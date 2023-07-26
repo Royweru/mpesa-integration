@@ -1,0 +1,30 @@
+<nav class="navbar bg-body-tertiary">
+    {% if request.user.is_authenticated %}
+    <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1">It's @{{ request.user }}</span>
+      </div>
+    {% else %}
+    <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1">You are not logged in</span>
+      </div>
+  {% endif %}
+
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'register-student' %}">Register</a>
+  </li>
+   {% if request.user.is_authenticated %}
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+  </li>
+   {% else %}
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'login' %}">Login</a>
+  </li>
+    {% endif %}
+  </ul>
+
+</nav>

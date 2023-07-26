@@ -1,0 +1,14 @@
+{% extends 'main.html' %}
+{% block content %}
+    <div class="row m-5 rounded p-3 bg-danger w-75">
+        <h2>Hey User welcome to the login page!!</h2>
+        <form action="" method="post">
+            {% csrf_token %}
+            <label>Username</label>
+            <input class="form-control" name="username" type="text" placeholder="username" aria-label="default input example">
+            <label for="inputPassword5"  class="form-label">Password</label>
+         <input type="password" name="password" id="inputPassword5" class="form-control" aria-labelledby="passwordHelpBlock">
+            <input type="submit" value="LOGIN">
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'main.html' %}
+
+{% block content %}
+ <div class="container">
+  <div class="row mt-3">
+      <div class="col-sm-6 bg- primary">
+          <h3>
+              Students:
+          </h3>
+          <hr>
+          {% for student in students %}
+              <div class="row bg-warning mt-2 rounded">
+               <span>{{ student.email }}</span>
+               <h5>
+                   {{ student.names }}
+               </h5>
+              <hr>
+              <small>
+               @{{ student.code }}
+              </small>
+              </div>
+          {% endfor %}
+      </div>
+      <div class="col-sm-5 bg- primary ms-2">
+          <h3>
+              Teachers:
+          </h3>
+          <hr>
+          {% for teacher in teachers %}
+          <div class="row bg-success mt-2 rounded">
+           <small>{{ teacher.tscno }}</small>
+           <h4>{{ teacher.name }}</h4>
+           <hr>
+           <h5>'@ teaches {{ teacher.subject }} '</h5>
+          </div>
+          {% endfor %}
+      </div>
+  </div>
+ </div>
+{% endblock %}
