@@ -1,0 +1,33 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    {% if page == 'stude' %}
+    <div class="row bg-success mt-3">
+     <h4>REGISTER STUDENT</h4>
+      <hr>
+     <form action="" method="post">
+     {% csrf_token %}
+     <input class="form-control" value="{{ student.names }}" name="names" type="text" placeholder="Full name" aria-label=".form-control-lg example">
+     <input class="form-control" value="{{ student.email }}" name="email" type="email" placeholder="Email" aria-label="default input example">
+     <input class="form-control" value="{{ student.phone }}" name="phone" type="tel" placeholder="Number" aria-label=".form-control example">
+      <input class="form-control" value="{{ student.age }}" name="age" type="number" placeholder="Age" aria-label=".form-control example">
+     <input class="form-control" value="{{ student.code }}" name="code" type="number" placeholder="Code" aria-label=".form-control example">
+     <input type="submit" value="EDIT STUDENT">
+    </form>
+        <a href="" class="text-warning mt-1"><h6>register teacher instead</h6></a>
+    </div>
+    {% else %}
+    <div class="row bg-primary mt-2">
+     <h4>REGISTER TEACHER</h4>
+     <hr>
+     <form action="" method="post">
+     {% csrf_token %}
+     <input class="form-control" name="name" type="text" placeholder="Full name" aria-label=".form-control example">
+     <input class="form-control" name="subject" type="text" placeholder="Subject that teacher teaches" aria-label="default input example">
+     <input class="form-control" name="tsc" type="number" placeholder="TSC CODE" aria-label=".form-control example">
+     <input type="submit" value="REGISTER TEACHER">
+    </form>
+        <a href="{% url 'edit-student' %}" class="text-warning mt-1"><h6>register student instead</h6></a>
+    </div>
+{% endif %}
+{% endblock %}

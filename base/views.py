@@ -66,3 +66,36 @@ def register_teacher(request):
         )
         return redirect('home')
     return render(request, 'base/register.html')
+
+
+def delete_student(request, pk):
+    student = Student.objects.get(id=pk)
+    if request.method == 'POST':
+        student.delete()
+        return redirect('home')
+
+    return render(request, 'base/delete.html', {'stude': student})
+
+
+def edit_student(request, pk):
+    page = 'stude'
+    student = Student.objects.get(id=pk)
+    if request.method == 'POST':
+        user = request.user
+        names = request.POST['names']
+        email = request.POST['email']
+        phone = request.POST['phone']
+        age = request.POST['age']
+        code = request.POST['code']
+
+        student.user = user
+        student.names = names
+        student.email = email
+        student.phone = phone
+        student.age = age
+        student.code = code
+
+        student.save()
+        return redirect('home')
+    context = {'page': page, 'student': student}
+    return render(request, 'base/editpage.html', context)
