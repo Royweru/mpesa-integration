@@ -10,17 +10,18 @@
           <hr>
           {% for student in students %}
               <div class="row bg-warning mt-2 rounded">
-
+                  {% if request.user.is_authenticated %}
                   <div class="row">
                       <a href="{% url 'delete-student' student.id %}" style="text-decoration: none"><i class="bi bi-trash-fill"></i></a>
                       <a href="{% url 'edit-student' student.id %}"><i class="bi bi-pencil-square"></i></a>
                   </div>
-
+                  {% endif %}
                    <span>{{ student.email }}</span>
                    <h5>
                        {{ student.names }}
                    </h5>
                   <hr>
+                  <p><span><i class="bi bi-telephone-fill"></i></span>: 0{{ student.phone }}</p>
                   <small>
                    @{{ student.code }}
                   </small>

@@ -27,7 +27,7 @@
      <input class="form-control" name="tsc" type="number" placeholder="TSC CODE" aria-label=".form-control example">
      <input type="submit" value="REGISTER TEACHER">
     </form>
-        <a href="{% url 'edit-student' %}" class="text-warning mt-1"><h6>register student instead</h6></a>
+        <a href="{% url 'edit-student' student.id %}" class="text-warning mt-1"><h6>register student instead</h6></a>
     </div>
 {% endif %}
 {% endblock %}

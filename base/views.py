@@ -45,6 +45,7 @@ def register_student(request):
     page = 'stude'
     if request.method == 'POST':
         Student.objects.create(
+            user=request.user,
             names=request.POST.get('names'),
             email=request.POST.get('email'),
             phone=request.POST.get('phone'),
@@ -68,11 +69,25 @@ def register_teacher(request):
     return render(request, 'base/register.html')
 
 
+def sign_up(request):
+    if request.method == 'POST':
+        user = User.objects.create_user(
+            username=request.POST['username'],
+            email=request.POST['email'],
+            password=request.POST['password']
+        )
+        login(request, user)
+        return redirect('home')
+
+    return render(request, 'base/signup.html')
+
+
 def delete_student(request, pk):
     student = Student.objects.get(id=pk)
     if request.method == 'POST':
-        student.delete()
-        return redirect('home')
+        if request.user.is_authenticated:
+            student.delete()
+            return redirect('home')
 
     return render(request, 'base/delete.html', {'stude': student})
 
